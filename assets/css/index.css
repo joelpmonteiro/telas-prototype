@@ -1,0 +1,81 @@
+/*fonte e textos*/
+:root {
+  --bs-body-bg-proto: #f3f5f6;
+  --primary-color: #304049;
+}
+
+body {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 400;
+  background-color: var(--bs-body-bg-proto);
+}
+
+header {
+  height: 60px;
+  background: #304049;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 25px 25px;
+}
+
+.title-font,
+.btn,
+h3 {
+  font-family: "Archivo Black";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.text-warning {
+  color: #faaa19 !important;
+}
+
+h1 {
+  font-size: 50px !important;
+}
+
+/*botoes*/
+.btn-entrar {
+  font-size: 30px;
+  line-height: 34px;
+}
+
+.btn-cadastrar {
+  font-size: 25px;
+}
+
+.btn-nova-conta {
+  font-size: 16px;
+}
+
+.btn-warning {
+  background-color: #faaa19;
+}
+
+/*modal*/
+.modal-content {
+  background-color: #304049;
+}
+
+.modal.fade.show {
+  backdrop-filter: blur(3px);
+}
+
+/*inputs e cards*/
+input,
+select {
+  height: 50px;
+  padding-left: 1.2rem !important;
+}
+
+.card,
+.btn,
+.modal-content {
+  border-radius: 25px;
+}
+
+.card {
+  background-color: #304049;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+}

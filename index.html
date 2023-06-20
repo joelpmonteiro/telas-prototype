@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Archivo+Black&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
   <title>ProtoType. - Acesso</title>
 </head>
 
@@ -29,7 +29,7 @@
     <div class="col col-md-6 col-lg-4">
       <div class="card">
         <div class="card-body text-center my-4 mx-2">
-          <form action="" method="">
+          <form method="post" id="form_login">
             <div class="mb-4">
               <input class="form-control rounded-pill" name="emailAcesso" id="emailAcesso" type="text"
                 placeholder="E-mail ou telefone" />
@@ -38,9 +38,9 @@
               <input class="form-control rounded-pill" name="senhaAcesso" id="senhaAcesso" type="password"
                 placeholder="Senha" />
             </div>
-            <a href="dashboard/create-proto.html" class="btn btn-warning text-white btn-entrar w-100">
+            <button class="btn btn-warning text-white btn-entrar w-100">
               Entrar
-            </a>
+            </button>
             <!-- O botão abaixo com submit do form deve ser utilizado na versão final do projeto
             <button type="submit" class="btn btn-warning text-white btn-entrar w-100">
               Entrar
@@ -109,7 +109,7 @@
                 </select>
               </div>
               <div class="col mt-4 mt-md-0 text-end">
-                <a class="btn btn-warning text-white btn-cadastrar" href="dashboard/create-proto.html">Cadastre-se</a>
+                <a class="btn btn-warning text-white btn-cadastrar" href="dashboard/dashboard.html">Cadastre-se</a>
                 <!-- O botão abaixo com submit do form deve ser utilizado na versão final do projeto
                 <button type="submit" class="btn btn-warning text-white btn-cadastrar">
                   Cadastre-se
@@ -124,6 +124,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
+
+  <script>
+    const btn_action = document.querySelector('#form_login')
+    btn_action.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let email = btn_action.elements['emailAcesso'].value;
+      let password = btn_action.elements['senhaAcesso'].value;
+
+
+      if (!email && !password) {
+        alert('Dados invalidos ou você nao preencheu!')
+      } else {
+
+        localStorage.setItem('login-user', JSON.stringify({ email: email, codeUser: 1 }));
+        routerPush('dashboard.html')
+
+      }
+
+
+    });
+
+    const routerPush = (path = '') => {
+      window.location.href = `/dashboard/${path}`;
+    }
+
+  </script>
 </body>
 
 </html>

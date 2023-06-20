@@ -1,0 +1,38 @@
+<div class="card rounded text-white col-12 col-md-6">
+    <div class="card-body">
+        <form method="post" id="create_project">
+            <h5 class="mb-3 bold">Criar novo Projeto</h5>
+            <input class="form-control rounded-pill mb-3" name="nomeProjeto" id="nomeProjeto" type="text"
+                placeholder="Nome do Projeto" />
+            <textarea class="form-control rounded mb-3" placeholder="Descrição" name="descricaoProjeto"
+                id="descricaoProjeto" cols="30" rows="5"></textarea>
+            <div class="d-flex justify-content-end gap-2">
+                <!-- <button class="btn btn-warning rounded btn-slim" type="button">Limpar</button>
+                <button class="btn btn-warning rounded btn-slim" type="submit">Criar</button> -->
+                <button class="btn btn-warning rounded btn-slim">Criar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    const btn_createProject = document.querySelector('#create_project');
+    btn_createProject.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nome = btn_createProject.elements['nomeProjeto'].value;
+        const descricao = btn_createProject.elements['descricaoProjeto'].value;
+        console.log(descricao);
+        console.log(nome)
+        const user = JSON.parse(localStorage.getItem('login-user'));
+
+        createProject({ nome: nome, descricao: descricao, codigoUsuario: user.codeUser }, btn_createProject);
+
+
+
+    });
+
+
+
+
+</script>
