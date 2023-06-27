@@ -37,7 +37,11 @@
         </div>
 
         <div class="d-flex justify-content-end p-3">
-          <button type="button" class="btn btn-warning rounded btn-slim-lg">
+          <button
+            type="button"
+            class="btn btn-warning rounded btn-slim-lg"
+            onclick="generatePrompt()"
+          >
             Gerar Prompt
           </button>
         </div>
@@ -46,13 +50,13 @@
   </div>
   <div class="d-flex flex-column col-12 col-md-6 mt-3 mt-md-0">
     <!--CARD PARA MOSTRAR DESCRIÇÃO DO REQUISITO-->
-    <div class="card d-none">
+    <div class="card d-none" id="card-generate-requis">
       <div class="card-body">
         <textarea
           class="form-control rounded mb-3"
           placeholder="Descrição"
           name="descricaoRequisito"
-          id="descricaoProjeto"
+          id="descricaoProjeto1"
           cols="30"
           rows="10"
         ></textarea>
@@ -64,7 +68,7 @@
       </div>
     </div>
     <!--CARD PARA MOSTRAR CÓDIGO DO PROTÓTIPO-->
-    <div class="card">
+    <div class="card" id="card-html-requis">
       <div class="card-body">
         <div class="d-flex justify-content-between mb-3">
           <h5 class="bold">HTML</h5>
@@ -163,7 +167,8 @@
     input.classList.add("form-check-input");
     input.type = "checkbox";
     input.value = "";
-    input.id = "defaultCheck1";
+    input.id = "propertyId";
+    input.checked = true;
 
     const label = document.createElement("label");
     label.classList.add("form-check-label");
@@ -200,6 +205,29 @@
     buttonTag.setAttribute("aria-selected", item.ariaSelected);
 
     return buttonTag;
+  }
+
+  async function generatePrompt(event) {
+    const property = document.querySelector("#propertyId");
+    const cardGenerate = document.querySelector("#card-generate-requis");
+    const cardGeneratehtml = document.querySelector("#card-html-requis");
+    const descricaoProjeto = document.querySelector("#descricaoProjeto1");
+    if (property.checked) {
+      cardGenerate.classList.remove("d-none");
+      //gerar prompt
+      instance
+        .get("prompts/gerarprompt/")
+        .then((value) => {
+          const { data } = value;
+          descricaoProjeto.textContent = data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      alert("selecione um requisito para gerar o prompt");
+    }
+    console.log("prompot: ", property.checked);
   }
 </script>
 
