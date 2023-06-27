@@ -22,17 +22,16 @@
         e.preventDefault();
         const nome = btn_createProject.elements['nomeProjeto'].value;
         const descricao = btn_createProject.elements['descricaoProjeto'].value;
-        console.log(descricao);
-        console.log(nome)
+
         const user = JSON.parse(localStorage.getItem('login-user'));
 
-        createProject({ nome: nome, descricao: descricao, codigoUsuario: user.codeUser }, btn_createProject);
+        createProject({
+            nome: nome,
+            descricao: descricao,
+            codigoUsuario: user.codeUser
+        }, btn_createProject);
 
 
 
     });
-
-
-
-
 </script>

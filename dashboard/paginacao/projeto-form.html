@@ -1,0 +1,192 @@
+<div class="d-flex gap-2">
+    <div class="d-flex flex-column col-12 col-md-6">
+        <div class="card rounded text-white">
+            <div class="card-body py-2">
+                <p id="nomeProjeto" class="bold mb-0">Prototipo 1</p>
+            </div>
+        </div>
+        <div class="card rounded text-white mt-2">
+            <div class="card-body">
+                <p>Cadastro de Requisitos</p>
+                <form>
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            Identificação:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="idRequisito" type="text" name="idRequisito">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-3">
+                            Nome:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="nomeRequisito" type="text"
+                                name="nomeRequisito">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-3">
+                            Atores:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="atorRequisito" type="text"
+                                name="atorRequisito">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-3">
+                        <div class="col-3">
+                            Prioridade:
+                        </div>
+                        <div class="col">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="prioridadeRequisito"
+                                    id="prioridadeRadio1" value="essencial">
+                                <label class="form-check-label" for="prioridadeRadio1">Essencial</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="prioridadeRequisito"
+                                    id="prioridadeRadio2" value="desejavel">
+                                <label class="form-check-label" for="prioridadeRadio2">Desejável</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3">
+                            Descrição:
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control rounded mb-3" placeholder="" name="descricaoProjeto"
+                                id="descricaoProjeto" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            Ações:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="acaoRequisito" type="text"
+                                name="acaoRequisito">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-3">
+                            Restrições:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="restricaoRequisito" type="text"
+                                name="restricaoRequisito">
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-3">
+                            Validações:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="validacaoRequisito" type="text"
+                                name="validacaoRequisito">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column col-12 col-md-6 mt-3 mt-md-0">
+        <div class="card rounded">
+            <div class="card-body">
+                <p>Dados</p>
+                <form>
+                    <div class="row">
+                        <div class="col-3">
+                            Descrição:
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control rounded mb-3" placeholder="" name="descricaoDados"
+                                id="descricaoDados" cols="30" rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-3">
+                            Tipo:
+                        </div>
+                        <div class="col">
+                            <select class="form-select rounded-pill">
+                                <option selected>Escolha o tipo</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-3">
+                        <div class="col-3">
+                            Obrigatório:
+                        </div>
+                        <div class="col">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="obrigatorioDado"
+                                    id="obrigatorioRadio1" value="sim">
+                                <label class="form-check-label" for="obrigatorioRadio1">Sim</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="obrigatorioDado"
+                                    id="obrigatorioRadio2" value="nao">
+                                <label class="form-check-label" for="obrigatorioRadio2">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-center mt-2">
+                        <div class="col-3">
+                            Máx. Caracteres:
+                        </div>
+                        <div class="col">
+                            <input class="form-control rounded-pill" id="maxChar" type="text" name="maxChar">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2 mt-2">
+                        <button class="btn btn-warning rounded btn-slim" type="button">Limpar</button>
+                        <button class="btn btn-warning rounded btn-slim" type="submit">Adicionar</button>
+                    </div>
+                </form>
+                <table class="table w-100">
+                    <thead class="text-white">
+                        <td>
+                            Descrição
+                        </td>
+                        <td>
+                            Tipo
+                        </td>
+                        <td>
+                            Obrigatório
+                        </td>
+                        <td>
+                            Máx. Caract.
+                        </td>
+                        <td></td>
+                    </thead>
+                    <tbody class="bg-white rounded">
+                        <tr>
+                            <td>Nome</td>
+                            <td>Texto</td>
+                            <td>Sim</td>
+                            <td>150</td>
+                            <td><button class="btn btn-secondary btn-slim rounded">Limpar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Texto</td>
+                            <td>Sim</td>
+                            <td>150</td>
+                            <td><button class="btn btn-secondary btn-slim rounded">Limpar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end gap-2 mt-2">
+                    <button class="btn btn-warning rounded btn-slim" type="button">Limpar</button>
+                    <button class="btn btn-warning rounded btn-slim" type="button">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

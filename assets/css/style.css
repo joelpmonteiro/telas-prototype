@@ -72,6 +72,14 @@ header .input-group,
   color: white;
 }
 
+.btn-slim-lg{
+  height: 35px;
+  font-size: 9pt;
+  width: 150px;
+  font-family: "Archivo Black";
+  color: white;
+}
+
 textarea {
   resize: none;
 }

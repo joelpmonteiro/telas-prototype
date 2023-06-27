@@ -1,0 +1,64 @@
+<div class="card-deck d-flex gap-3 flex-wrap flex" id="projetos"></div>
+
+<script type="text/javascript">
+  const projetos = document.getElementById("projetos");
+  console.log(projetos);
+  instance
+    .get("/projetos")
+    .then((result) => {
+      result.data.forEach((element) => {
+        const card = createTagCards(element.descricao, element.dataInicio);
+        projetos.appendChild(card);
+      });
+    })
+    .catch((err) => {
+      alert("Erro ao buscar os projetos cadastrados");
+      console.log(err);
+    });
+
+  function createTagCards(descricao, data) {
+    const divCard = document.createElement("div");
+    divCard.classList.add("card");
+    divCard.classList.add("col-2");
+    divCard.classList.add("flex-grow-1");
+
+    const a = document.createElement("a");
+    a.href = "#teste";
+    a.classList.add("text-decoration-none");
+
+    const img = document.createElement("img");
+    img.classList.add("card-img-top");
+    img.src = "../../assets/images.png";
+    img.alt = "Card image cap";
+    img.width = "100";
+    img.height = "100";
+
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+
+    const h5 = document.createElement("h5");
+    h5.classList.add("card-title");
+    h5.textContent = `${descricao}`;
+
+    const p = document.createElement("p");
+    p.classList.add(...["card-text", "small"]);
+    p.textContent = `Data de criação: ${data}`;
+
+    cardBody.append(...[h5, p]);
+
+    a.append(...[img, cardBody]);
+
+    divCard.append(...[a]);
+    return divCard;
+  }
+</script>
+
+<!-- <div class="card col">
+        <a href="#teste" class="text-decoration-none">
+            <img class="card-img-top" width="100px" height="100px" src="../../assets/images.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Protótipo 1</h5>
+                <p class="card-text small">Data de criação: 01/01/2023</p>
+            </div>
+        </a>
+    </div> -->

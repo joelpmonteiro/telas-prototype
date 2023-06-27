@@ -1,0 +1,264 @@
+<div class="d-flex gap-2">
+  <div class="d-flex flex-column col-12 col-md-6">
+    <div class="card rounded">
+      <div class="card-body py-2">
+        <p id="nomeProjeto" class="bold mb-0">Prototipo 1</p>
+      </div>
+    </div>
+    <div class="card rounded mt-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <h5>Requisitos</h5>
+          </div>
+          <div class="col-8">
+            <h5>Dados</h5>
+          </div>
+        </div>
+        <div class="row bg-white rounded" id="requisitos">
+          <div class="col-4 border-end">
+            <div
+              class="tabRequisito nav flex-column"
+              id="v-pills-tab "
+              role="tablist"
+              aria-orientation="vertical"
+            ></div>
+          </div>
+          <div class="col-8 text-dark">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="v-pills-1"
+                role="tabpanel"
+                aria-labelledby="v-pills-1-tab"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end p-3">
+          <button type="button" class="btn btn-warning rounded btn-slim-lg">
+            Gerar Prompt
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column col-12 col-md-6 mt-3 mt-md-0">
+    <!--CARD PARA MOSTRAR DESCRIÇÃO DO REQUISITO-->
+    <div class="card d-none">
+      <div class="card-body">
+        <textarea
+          class="form-control rounded mb-3"
+          placeholder="Descrição"
+          name="descricaoRequisito"
+          id="descricaoProjeto"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <div class="d-flex justify-content-end gap-2">
+          <button class="btn btn-warning rounded btn-slim" type="button">
+            Copiar
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--CARD PARA MOSTRAR CÓDIGO DO PROTÓTIPO-->
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-3">
+          <h5 class="bold">HTML</h5>
+          <div class="d-flex justify-content-end gap-2">
+            <button class="btn btn-warning rounded btn-slim" type="button">
+              Download
+            </button>
+            <button class="btn btn-warning rounded btn-slim" type="button">
+              Salvar
+            </button>
+          </div>
+        </div>
+        <textarea
+          class="form-control rounded mb-3"
+          placeholder="Código"
+          name="codigoPrompt"
+          id="descricaoProjeto"
+          cols="30"
+          rows="16"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const vtab = document.querySelector(".tabRequisito");
+  const rqDados = document.querySelector("#v-pills-1");
+
+  instance
+    .get("prompts/listar-requisitos")
+    .then((result) => {
+      const t = [result.data];
+      t.forEach((value) => {
+        const requisito = createRequisitosTag(value.nome);
+        vtab.append(requisito);
+        createDivsCardTable(value.nome, value.listaDadosRequisitos);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  function createDivsCardTable(descri, arrayRequisitos) {
+    const divTab = document.createElement("div");
+    divTab.classList.add(...["tab-pane", "fade", "show", "active"]);
+    divTab.id = "v-pills-1";
+    divTab.role = "tabpanel";
+    divTab.ariaLabel = "v-pills-1-tab";
+
+    const tableTag = document.createElement("table");
+    tableTag.classList.add("w-100");
+
+    const thead = document.createElement("thead");
+    const th = document.createElement("th");
+    th.textContent = descri;
+
+    const td = document.createElement("td");
+    const icon = document.createElement("i");
+    icon.classList.add(...["fa-solid", "fa-chart-simple", "fa-rotate-90"]);
+    td.appendChild(icon);
+
+    const th1 = document.createElement("th");
+
+    const icon1 = document.createElement("i");
+    icon1.classList.add(...["fa-solid", "fa-table-columns"]);
+    th1.appendChild(icon1);
+
+    thead.append(...[th, td, th1]);
+    const divRequisitos = document.createElement("div");
+
+    const tbody = document.createElement("tbody");
+
+    arrayRequisitos.forEach((value) => {
+      const tr = document.createElement("tr");
+      const tdBod = document.createElement("td");
+      tdBod.textContent = value.descricao;
+      const tdBod2 = document.createElement("td");
+      tdBod2.textContent = value.bloco;
+      const tdBod3 = document.createElement("td");
+      tdBod3.textContent = value.coluna;
+      tr.append(...[tdBod, tdBod2, tdBod3]);
+      tbody.appendChild(tr);
+    });
+
+    tableTag.append(...[thead, tbody]);
+
+    divTab.append(rqDados.append(tableTag));
+  }
+  function createRequisitosTag(descricao) {
+    const button = document.createElement("button");
+    const divFormCheck = document.createElement("div");
+    divFormCheck.classList.add("form-check");
+
+    const input = document.createElement("input");
+    input.classList.add("form-check-input");
+    input.type = "checkbox";
+    input.value = "";
+    input.id = "defaultCheck1";
+
+    const label = document.createElement("label");
+    label.classList.add("form-check-label");
+    label.textContent = descricao;
+    label.setAttribute("for", "defaultCheck1");
+
+    divFormCheck.append(...[input, label]);
+
+    const btnCreate = createAttributeButton(button, {
+      class: ["nav-link", "active"],
+      id: "v-pills-1-tab",
+      dataBsToggle: "pill",
+      dataBsTarget: "#v-pills-1",
+      type: "button",
+      role: "tab",
+      ariaControls: "aria-controls",
+      ariaSelected: "aria-selected",
+    });
+
+    btnCreate.appendChild(divFormCheck);
+    return btnCreate;
+  }
+
+  function createAttributeButton(buttonTag, item) {
+    buttonTag.classList.add(...item.class);
+    //button.classList.add("active");
+    buttonTag.setAttribute("id", item.id);
+
+    buttonTag.setAttribute("data-bs-toggle", item.dataBsToggle);
+    buttonTag.setAttribute("data-bs-target", item.dataBsTarget);
+    buttonTag.setAttribute("type", item.type);
+    buttonTag.setAttribute("role", item.role);
+    buttonTag.setAttribute("aria-controls", item.ariaControls);
+    buttonTag.setAttribute("aria-selected", item.ariaSelected);
+
+    return buttonTag;
+  }
+</script>
+
+<!-- <thead>
+                    <th>Cadastro de clientes</th>
+                    <td>
+                      <i class="fa-solid fa-chart-simple fa-rotate-90"></i>
+                    </td>
+                    <th><i class="fa-solid fa-table-columns"></i></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Nome</td>
+                      <td>1</td>
+                      <td>1</td>
+                    </tr>
+                  </tbody> -->
+
+<!-- <button
+  class="nav-link active"
+  id="v-pills-1-tab"
+  data-bs-toggle="pill"
+  data-bs-target="#v-pills-1"
+  type="button"
+  role="tab"
+  aria-controls="v-pills-1"
+  aria-selected="true"
+>
+  <div class="form-check">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      id="defaultCheck1"
+    />
+    <label class="form-check-label" for="defaultCheck1">
+      Cadastro de clientes
+    </label>
+  </div>
+</button>
+<button
+  class="nav-link"
+  id="v-pills-2-tab"
+  data-bs-toggle="pill"
+  data-bs-target="#v-pills-2"
+  type="button"
+  role="tab"
+  aria-controls="v-pills-2"
+  aria-selected="false"
+>
+  <div class="form-check">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      id="defaultCheck2"
+    />
+    <label class="form-check-label" for="defaultCheck2">
+      Cadastro de fornecedor
+    </label>
+  </div>
+</button> -->
